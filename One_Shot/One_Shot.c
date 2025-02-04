@@ -13,24 +13,25 @@ bool ACTIVE_CALLBACK = true;
 
 // Função utilizada para desligar os LEDs e Ativar o Callback
 int64_t turn_off_callback(alarm_id_t id, void *user_data){
+
     // A função receberá os estados atuais dos LEDs
     bool GREEN_STATE = gpio_get(GREEN);
     bool BLUE_STATE = gpio_get(BLUE);
     bool RED_STATE = gpio_get(RED);
 
-    // Se os três estão ativos, desliga-se o primeiro LED e cria um novo alarme para chamar esta função pros próximos LEDs
-    if(GREEN_STATE && BLUE_STATE && RED_STATE){
+    // Se o primeiro LED está ativo, ele é desligado e cria um novo alarme para chamar esta função pros próximos LEDs
+    if(GREEN_STATE){
         gpio_put(GREEN, false);
         add_alarm_in_ms(3000, turn_off_callback, NULL, false);
     }
 
-    // Se apenas dois estão ativos, desliga-se o segundo LED e cria-se novamente um novo alarme para chamar esta função para desligar o último LED
-    else if(BLUE_STATE && RED_STATE){
+    // Se o segundo está ligado, desliga-se o LED e cria-se novamente um novo alarme para chamar esta função para desligar o último LED
+    else if(BLUE_STATE){
         gpio_put(BLUE, false);
         add_alarm_in_ms(3000, turn_off_callback, NULL, false);
     }
 
-    // Senão, desliga-se o último LED e ativa a chamada da função através do botão novamente.
+    // Se somente o último está ligado, desliga-se o LED e ativa a chamada da função através do botão novamente.
     else {
         gpio_put(RED, false);
         ACTIVE_CALLBACK = true;
@@ -80,6 +81,7 @@ int main()
             add_alarm_in_ms(3000, turn_off_callback, NULL, false);
             sleep_ms(200);
         }
+        // Delay para melhor funcionamento da CPU
         sleep_ms(1000);
     }
 }

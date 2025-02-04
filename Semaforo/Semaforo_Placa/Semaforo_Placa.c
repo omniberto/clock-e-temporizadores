@@ -6,7 +6,7 @@
 const uint32_t R = 13;
 const uint32_t G = 11;
 
-// Booleano utilizados no funcionamento do semáforo
+// Booleanos utilizados no funcionamento do semáforo
 bool RED_ON = true;
 bool YELLOW_ON = false;
 bool GREEN_ON = false;
@@ -14,13 +14,10 @@ bool GREEN_ON = false;
 // Função temporizada que simula o funcionamento
 bool repeating_timer_callback(struct repeating_timer *t){
 
-    // Abaixo os valores esperados das equações booleanas
+    // As equações booleanas utilizadas para definir o funcionamento
     YELLOW_ON = RED_ON && !GREEN_ON && !YELLOW_ON;
-    // 1 - true and true and true = true | 2 - false and ... = false | 3 - false and ... = false
-    GREEN_ON = !RED_ON && (YELLOW_ON || (!YELLOW_ON && !RED_ON)) && !GREEN_ON; 
-    // 1 - false and ... = false  | 2 - true and (false or (true and true)) and true = true | 3 - true and (false or (true and true)) and false = false
+    GREEN_ON = !RED_ON && !GREEN_ON;
     RED_ON = !GREEN_ON && !YELLOW_ON && !RED_ON; 
-    // 1 - true and false = false | 2 - false and ... = false | 3 - true and true and true = true
 
     // Colocando os valores no LED
     gpio_put(R, RED_ON || YELLOW_ON);
@@ -46,7 +43,7 @@ int main()
     struct repeating_timer timer;
     add_repeating_timer_ms(3000, repeating_timer_callback, NULL, &timer);    
 
-    // Função main que printará qual a cor atual do semáforo
+    // Função main que printará qual o estado atual do semáforo
     while (true) {
         printf("O semáforo está: ");
         if(RED_ON)
@@ -54,8 +51,7 @@ int main()
         else if (YELLOW_ON)
             printf("AMARELO\n");
         else if (GREEN_ON)
-            printf("VERDE\n");
-        
+            printf("VERDE\n");        
         sleep_ms(1000);
     }
 }

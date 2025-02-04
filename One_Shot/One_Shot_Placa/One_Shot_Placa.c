@@ -13,19 +13,20 @@ bool ACTIVE_CALLBACK = true;
 
 // Função utilizada para desligar os componentes do LED RGB e Ativar o Callback
 int64_t turn_off_callback(alarm_id_t id, void *user_data){
+
     // A função receberá o estado atual do LED
     bool GREEN_STATE = gpio_get(GREEN);
     bool BLUE_STATE = gpio_get(BLUE);
     bool RED_STATE = gpio_get(RED);
 
-    // Se os três componentes estão ativos, desliga-se o componente verde e cria-se um novo alarme para chamar esta função novamente.
-    if(GREEN_STATE && BLUE_STATE && RED_STATE){
+    // Se o componente verde está ativo, desliga-se o componente e cria-se um novo alarme para chamar esta função novamente.
+    if(GREEN_STATE){
         gpio_put(GREEN, false);
         add_alarm_in_ms(3000, turn_off_callback, NULL, false);
     }
 
-    // Se apenas dois estão ativos, desliga-se o componente azul e cria-se um novo alarme para chamar esta função novamente.
-    else if(BLUE_STATE && RED_STATE){
+    // Se o componente azul está ativo, desliga-se o componente e cria-se um novo alarme para chamar esta função novamente.
+    else if(BLUE_STATE){
         gpio_put(BLUE, false);
         add_alarm_in_ms(3000, turn_off_callback, NULL, false);
     }
@@ -80,6 +81,7 @@ int main()
             add_alarm_in_ms(3000, turn_off_callback, NULL, false);
             sleep_ms(200);
         }
+        // Delay para melhor funcionamento da CPU
         sleep_ms(1000);
     }
 }
