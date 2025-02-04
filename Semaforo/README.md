@@ -8,3 +8,6 @@
 4. O LED Verde acenderá por último após o amarelo se apagar e se manterá aceso por 3 segundos.
 
 5. Ao final, o LED Vermelho reacenderá e a sequência se repetirá indefinidamente.
+
+# INFORMAÇÕES ADICIONAIS
+> Para rodar o código na placa, utilize o código que está na pasta Semaforo_Placa

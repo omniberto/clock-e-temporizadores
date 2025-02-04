@@ -7,3 +7,6 @@
 3. O Botão não funcionará até o último LED estar desligado.
 
 4. Uma vez que os LEDs estiverem apagados, o Botão pode ser apertado novamente.
+
+# INFORMAÇÕES ADICIONAIS
+> Para rodar o código na placa, utilize o código que está na pasta One_Shot_Placa
