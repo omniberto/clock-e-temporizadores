@@ -1,10 +1,10 @@
 # Funcionamento do Semáforo:
-Os LEDs acenderão na sequência esperada de um semáforo.
+1. Os LEDs acenderão na sequência esperada de um semáforo.
 
-O LED Vermelho se acenderá primeiro e se manterá aceso por 3 segundos.
+2. O LED Vermelho se acenderá primeiro e se manterá aceso por 3 segundos.
 
-O LED Amarelo acenderá assim que o LED Vermelho se apagar e se manterá aceso por 3 segundos.
+3. O LED Amarelo acenderá assim que o LED Vermelho se apagar e se manterá aceso por 3 segundos.
 
-O LED Verde acenderá por último após o amarelo se apagar e se manterá aceso por 3 segundos.
+4. O LED Verde acenderá por último após o amarelo se apagar e se manterá aceso por 3 segundos.
 
-Ao final, o LED Vermelho reacenderá e a sequência se repetirá indefinidamente.
+5. Ao final, o LED Vermelho reacenderá e a sequência se repetirá indefinidamente.
