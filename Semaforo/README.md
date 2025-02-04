@@ -7,4 +7,4 @@ O LED Amarelo acenderá assim que o LED Vermelho se apagar e se manterá aceso p
 
 O LED Verde acenderá por último após o amarelo se apagar e se manterá aceso por 3 segundos.
 
-Ao final, o LED Vermelhor reacenderá e a sequência se repetirá indefinidamente.
+Ao final, o LED Vermelho reacenderá e a sequência se repetirá indefinidamente.
